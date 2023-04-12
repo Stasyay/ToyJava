@@ -22,14 +22,21 @@ public class MachineController {
         repository.AddGroupToy(toy);
     }
 
-    public Toy controllerStartPlay(){
+    public void controllerStartPlay(){
         List<Toy> toys = repository.getAllToys();
+        if (toys.isEmpty()){
+            System.out.println("Автомат не работает! Нет игрушек. ");
+        }
         List toysForGame = controllerChoiceToysForGame(toys);
-        controllerChoiceWinnerToy(toysForGame);
-        return null;
+        if(!toysForGame.isEmpty()){
+            controllerChoiceWinnerToy(toysForGame);
+        }
+        else {
+            System.out.println("Не повезло. Попробуйте еще раз");
+        }
     }
 
-    private Toy controllerChoiceWinnerToy(List<Toy> toysForWinner){
+    private void controllerChoiceWinnerToy(List<Toy> toysForWinner){
         Random rnd = new Random();
         int RandomForWinnerToy = rnd.nextInt(toysForWinner.size());
 
@@ -37,10 +44,8 @@ public class MachineController {
             if (toysForWinner.indexOf(toyForWinner) == RandomForWinnerToy){
                 System.out.println("Поздравляю! Вы выиграли: " + toyForWinner.getNameToy());
                 controllerDeleteWinnerToyFromMachine(toyForWinner);
-                return toyForWinner;
             }
         }
-        return null;
     }
 
     public void controllerDeleteWinnerToyFromMachine(Toy Toy){

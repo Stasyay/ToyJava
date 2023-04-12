@@ -48,16 +48,17 @@ public class ViewMashine {
 
     private void listToys() throws Exception{
         List<Toy> ListToys = machineController.readAllToys();
+        if (ListToys.isEmpty()){
+            System.out.println("Необходимо пополнить автомат игрушками!");
+        }
         for (Toy toy : ListToys){
             System.out.println(toy);
         }
-
     }
 
     private void StartPlay() throws Exception{
-        System.out.println("Start Game");
+        System.out.println("Ну, поехали!\n");
         machineController.controllerStartPlay();
-
     }
 
     private Toy inputToy(){
