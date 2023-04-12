@@ -76,8 +76,7 @@ public class MachineController {
                 }
             }
         }
-        System.out.println(toysForGame);
-        return toysForGame;
+         return toysForGame;
     }
 
     private int controllerFoundMaxFrequencyWinner(List<Toy> toys){
